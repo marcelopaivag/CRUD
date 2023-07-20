@@ -3,8 +3,8 @@ function validateForm(){
     let name = document.getElementById('inputName').value;
     let email = document.getElementById('inputEmail').value;
     let phone = document.getElementById('inputPhone').value;
-    let date = document.getElementById('inputDate').value;
-    let time = document.getElementById('inputTime').value;
+    let date = (document.getElementById('inputDate').value).toString()
+    let time = (document.getElementById('inputTime').value).toString()
 
     if (name == "") {
         alert('El nombre es requerido');
@@ -49,7 +49,7 @@ function showData(){
 
     var html = "";
 
-    listPeople.forEach(function(element, index){
+        listPeople.forEach(function(element, index){
         html += "<tr>";
         html += "<td>" + element.name + "</td>";
         html += "<td>" + element.email + "</td>";
@@ -63,7 +63,6 @@ function showData(){
     document.querySelector('#tableData tbody').innerHTML = html;
 }
 
-
 document.onload = showData();
 
 function AddData(){
@@ -71,7 +70,9 @@ function AddData(){
         let email = document.getElementById('inputEmail').value;
         let name = document.getElementById('inputName').value;
         let phone = document.getElementById('inputPhone').value;
-
+        let date = (document.getElementById('inputDate').value).toString()
+        let time = (document.getElementById('inputTime').value).toString()
+ 
         var listPeople;
         if (localStorage.getItem('listPeople') == null) {
             listPeople = [];
@@ -83,6 +84,8 @@ function AddData(){
             email: email,
             name: name,
             phone: phone,
+            date: date,
+            time: time,
         });
 
         localStorage.setItem('listPeople', JSON.stringify(listPeople));
